@@ -1,0 +1,17 @@
+.main {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.h1 {
+    flex-basis: 100%;
+    text-align: center;
+    color: thistle;
+    padding: 25px 0 25px 0;
+}
+
+.input {
+    margin-left: 15px;
+    width: 458px;
+}
+

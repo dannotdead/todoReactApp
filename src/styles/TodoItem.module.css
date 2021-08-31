@@ -1,0 +1,19 @@
+.item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    display: flex;
+    padding: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.body {
+    word-break: break-all;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.bodyLineThrough {
+    text-decoration: line-through;
+}

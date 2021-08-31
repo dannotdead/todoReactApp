@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './styles/App.css'
+import {BrowserRouter} from "react-router-dom";
+import AppRouter from "./components/AppRouter";
+import {AuthContext} from "./context";
 
-function App() {
+const App = () => {
+  const [todos, setTodos] = useState([])
+
+  // убрать изменение состояния при каждом изменении input, useMemo
+  const createTodo = (newTodo) => {
+    setTodos([...todos, newTodo])
+  }
+
+  const changeCheck = (todo) => {
+    let todosCopy = [...todos]
+    todosCopy.map(item => {
+        if (item.id === todo) {
+          item.checked ? item.checked = false : item.checked = true
+        }
+      }
+    )
+    setTodos(todosCopy)
+  }
+
+  const deleteToDo = (todo) => {
+    setTodos(todos.filter(item => item.id !== todo))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthContext.Provider
+      value={{
+        todos,
+        setTodos,
+        createTodo,
+        changeCheck,
+        deleteToDo
+      }}
+    >
+      <BrowserRouter>
+        <AppRouter/>
+      </BrowserRouter>
+    </AuthContext.Provider>
   );
-}
+};
 
 export default App;
